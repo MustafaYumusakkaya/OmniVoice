@@ -54,7 +54,7 @@ logger = logging.getLogger(__name__)
 
 def build_model_and_tokenizer(
     config: TrainingConfig,
-) -> Tuple[OmniVoice, AutoTokenizer]:
+) -> tuple[OmniVoice, AutoTokenizer]:
     """Load Tokenizer and Model, handle resizing and special tokens."""
     logger.info("Initializing Model & Tokenizer...")
 
@@ -130,7 +130,7 @@ def build_model_and_tokenizer(
 
 def build_dataloaders(
     config: TrainingConfig, tokenizer: AutoTokenizer
-) -> Tuple[DataLoader, DataLoader]:
+) -> tuple[DataLoader, DataLoader]:
     """Setup Data Pipeline: Manifests -> WDS -> Batching -> Loaders.
 
     Batching strategy depends on ``config.attn_implementation``:

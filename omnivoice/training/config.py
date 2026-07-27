@@ -30,8 +30,8 @@ from typing import List, Optional, Tuple
 @dataclass
 class TrainingConfig:
     # Key Paths
-    output_dir: Optional[str] = None
-    data_config: Optional[str] = None
+    output_dir: str | None = None
+    data_config: str | None = None
 
     # Model Specific
     llm_name_or_path: str = "Qwen/Qwen3-0.6B"
@@ -40,20 +40,20 @@ class TrainingConfig:
     num_audio_codebook: int = 8
 
     # Model Training Specific
-    audio_codebook_weights: List[float | int] = field(
+    audio_codebook_weights: list[float | int] = field(
         default_factory=lambda: [8, 8, 6, 6, 4, 4, 2, 2]
     )
     drop_cond_ratio: float = 0.1
-    prompt_ratio_range: Tuple[float, float] = field(default_factory=lambda: (0.0, 0.3))
-    mask_ratio_range: Tuple[float, float] = field(default_factory=lambda: (0.0, 1.0))
+    prompt_ratio_range: tuple[float, float] = field(default_factory=lambda: (0.0, 0.3))
+    mask_ratio_range: tuple[float, float] = field(default_factory=lambda: (0.0, 1.0))
     language_ratio: float = 0.8
     use_pinyin_ratio: float = 0.3
     instruct_ratio: float = 1.0
     only_instruct_ratio: float = 0.5
 
     # Init settings
-    resume_from_checkpoint: Optional[str] = None
-    init_from_checkpoint: Optional[str] = None
+    resume_from_checkpoint: str | None = None
+    init_from_checkpoint: str | None = None
 
     # Training Hyperparams
     learning_rate: float = 1e-4
@@ -75,7 +75,7 @@ class TrainingConfig:
     mixed_precision: str = "bf16"
     allow_tf32: bool = True
     use_deepspeed: bool = False
-    deepspeed_config: Optional[str] = None
+    deepspeed_config: str | None = None
     attn_implementation: str = "flex_attention"
 
     # Length-grouped batching (only used when attn_implementation != "flex_attention")
